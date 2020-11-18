@@ -1,7 +1,18 @@
-import express from 'express';
+import { createServer } from 'http';
 
-const server = express();
+import app from './config/express';
 
-server.listen(3333, () => {
-  console.log('connected');
-});
+class AppServer {
+  static init() {
+    const port = process.env.PORT || 3005;
+    const server = createServer(app);
+
+    server.listen(port, () => {
+      console.log(
+        `API server started in port: ${port}, ready for connections!`,
+      );
+    });
+  }
+}
+
+AppServer.init();
