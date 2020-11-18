@@ -5,6 +5,8 @@ import express, { Express } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 
+import globalErrorsMiddleware from 'api/middlewares/global-errors.middleware';
+import { KafkaConfig } from '../kafka';
 import routes from '../../api/routes';
 
 class Server {
@@ -13,8 +15,16 @@ class Server {
   constructor() {
     this.server = express();
 
+    this.kafka();
     this.middlewares();
     this.routes();
+    this.errorHandling();
+  }
+
+  private kafka(): void {
+    const kafka = new KafkaConfig();
+
+    kafka.connectKafka();
   }
 
   private middlewares(): void {
@@ -24,6 +34,10 @@ class Server {
 
   private routes(): void {
     this.server.use(routes);
+  }
+
+  private errorHandling(): void {
+    this.server.use(globalErrorsMiddleware);
   }
 }
 
