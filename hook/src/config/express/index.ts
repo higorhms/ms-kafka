@@ -5,7 +5,7 @@ import express, { Express } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 
-import globalErrorsMiddleware from 'api/middlewares/global-errors.middleware';
+import globalErrorsMiddleware from '../../api/middlewares/global-errors.middleware';
 import { KafkaConfig } from '../kafka';
 import routes from '../../api/routes';
 
