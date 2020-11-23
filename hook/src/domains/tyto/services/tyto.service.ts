@@ -1,4 +1,4 @@
-import { BrokerIntegration } from 'integrations';
+import { BrokerIntegration } from '../../../integrations';
 
 class TytoService {
   private broker: BrokerIntegration;
