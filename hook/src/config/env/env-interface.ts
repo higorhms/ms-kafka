@@ -16,14 +16,4 @@ export interface IEnv {
       subscriptionsTopic: string;
     };
   };
-  postgres: {
-    host: string;
-    port: number;
-    username: string;
-    password: string;
-    database: string;
-    dialect: string;
-    logging: boolean;
-    timezone: string;
-  };
 }

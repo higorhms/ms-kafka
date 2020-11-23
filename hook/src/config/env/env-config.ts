@@ -32,16 +32,6 @@ const envs: IEnv = {
         .KAFKA_PRODUCER_SUBSCRIPTIONS_TOPIC as string,
     },
   },
-  postgres: {
-    database: process.env.POSTGRES_DB as string,
-    host: process.env.POSTGRES_DB_HOST as string,
-    port: parseInt(process.env.POSTGRES_DB_PORT as string, 10) || 5432,
-    username: process.env.POSTGRES_DB_USER as string,
-    password: process.env.POSTGRES_DB_PASSWORD as string,
-    dialect: process.env.POSTGRES_DB_DIALECT as string,
-    logging: process.env.POSTGRES_DB_LOGGING === 'true',
-    timezone: (process.env.POSTGRES_DB_TIMEZONE as string) || 'UTC',
-  },
 };
 
 export default envs;
