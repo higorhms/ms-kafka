@@ -24,7 +24,7 @@ export const kafkaConfig = {
 export const googlePubSubConfig = {
   client: {
     projectId: process.env.GOOGLE_PUB_SUB_PROJECT_ID,
-    keyFile: 'woven-art-296112-6eae16629fa6.json',
+    keyFile: process.env.GOOGLE_PUB_SUB_KEY_FILE,
   },
   topicName: process.env.GOOGLE_PUB_SUB_TOPIC_NAME as string,
 };
