@@ -1,17 +1,15 @@
+import Container from 'typedi';
+
 import { KafkaConfig } from '../config/kafka';
 
 export class BrokerIntegration {
   private kafka: KafkaConfig;
 
   constructor() {
-    this.kafka = new KafkaConfig();
+    this.kafka = Container.get(KafkaConfig);
   }
 
   async sendMessage(message: any): Promise<void> {
     this.kafka.producer(message);
-  }
-
-  async connectProducer(): Promise<void> {
-    await this.kafka.connectKafka();
   }
 }
