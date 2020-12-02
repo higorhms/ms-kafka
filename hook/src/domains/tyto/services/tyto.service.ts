@@ -1,4 +1,9 @@
 import { BrokerIntegration } from '../../../integrations';
+import IVisitModel from '../interfaces/visit.model';
+
+interface IResponse {
+  message: string;
+}
 
 class TytoService {
   private broker: BrokerIntegration;
@@ -7,12 +12,12 @@ class TytoService {
     this.broker = new BrokerIntegration();
   }
 
-  public async execute(data: any): Promise<any> {
-    /**
-     * STORE DATA AND SEND TO KAFKA
-     */
+  public async execute(data: IVisitModel): Promise<IResponse> {
+    await this.broker.connectProducer();
 
-    this.broker.sendMessage(data);
+    await this.broker.sendMessage(data);
+
+    return { message: 'success' };
   }
 }
 

@@ -10,4 +10,8 @@ export class BrokerIntegration {
   async sendMessage(message: any): Promise<void> {
     this.kafka.producer(message);
   }
+
+  async connectProducer(): Promise<void> {
+    await this.kafka.connectKafka();
+  }
 }

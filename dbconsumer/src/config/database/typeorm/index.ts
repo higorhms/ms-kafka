@@ -7,6 +7,7 @@ export default createConnection({
   host: ENV.mongodb.host,
   port: ENV.mongodb.port,
   database: ENV.mongodb.database,
+  synchronize: true,
 }).then(() => {
   console.log('database was sucessfully connected');
 });
