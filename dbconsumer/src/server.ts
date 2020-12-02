@@ -1,11 +1,19 @@
-import KafkaConfig from './config/kafka';
+import Container from 'typedi';
+
+import { BrokerIntegration } from './integrations';
+
+import ReceiveVisitService from './domains/tyto/services/receive-visit.service';
 
 class Server {
-  kafka: KafkaConfig;
+  kafka: BrokerIntegration;
 
   constructor() {
-    this.kafka = new KafkaConfig();
+    this.kafka = Container.get(BrokerIntegration);
+  }
+
+  async execute() {
+    await Container.get(ReceiveVisitService).execute();
   }
 }
 
-export default new Server();
+export default new Server().execute();
