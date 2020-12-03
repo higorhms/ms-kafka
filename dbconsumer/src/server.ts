@@ -1,8 +1,9 @@
 import Container from 'typedi';
 
-import { BrokerIntegration } from './integrations';
+import './config/database/typeorm/index';
 
-import ReceiveVisitService from './domains/tyto/services/receive-visit.service';
+import { BrokerIntegration } from './integrations';
+import ReceiveVisitsController from './domains/tyto/controllers/receive-visits.controller';
 
 class Server {
   kafka: BrokerIntegration;
@@ -12,7 +13,7 @@ class Server {
   }
 
   async execute() {
-    await Container.get(ReceiveVisitService).execute();
+    Container.get(ReceiveVisitsController);
   }
 }
 

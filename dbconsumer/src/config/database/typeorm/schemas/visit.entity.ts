@@ -1,9 +1,19 @@
-import { Column, Entity } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import VisitResult from './visit-result.entity';
 
-@Entity('visits')
+@Entity()
 export default class Visit {
+  @ObjectIdColumn()
+  id: ObjectID;
+
   @Column()
   clinicianIdentifier: string;
 
@@ -61,7 +71,7 @@ export default class Visit {
   @Column()
   externalProperties: [];
 
-  @Column(() => VisitResult)
+  @Column()
   results: VisitResult[];
 
   @Column()
@@ -75,4 +85,10 @@ export default class Visit {
 
   @Column({ nullable: true })
   accountIdentifier: string | null;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

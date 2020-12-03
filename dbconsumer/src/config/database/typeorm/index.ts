@@ -1,13 +1,17 @@
+/* eslint-disable no-console */
+import path from 'path';
 import { createConnection } from 'typeorm';
 
 import ENV from '../../env/env-config';
 
 export default createConnection({
+  name: 'mongo',
   type: 'mongodb',
   host: ENV.mongodb.host,
   port: ENV.mongodb.port,
   database: ENV.mongodb.database,
-  synchronize: true,
+  useUnifiedTopology: true,
+  entities: [path.resolve(__dirname, 'schemas', '*{.js,.ts}')],
 }).then(() => {
-  console.log('database was sucessfully connected');
+  console.log('🚀 - Database was sucessfully connected');
 });
