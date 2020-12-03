@@ -1,21 +1,19 @@
 import { Container } from 'typedi';
 
-import { BrokerIntegration } from '../../../integrations';
+import Visit from '../../../config/database/typeorm/schemas/visit.entity';
+import VisitRepository from '../../../config/database/typeorm/repositories/visit.repository';
+import IVisitRepository from '../../../config/repositories/visit-repository.protocol';
+import ICreateVisitDTO from '../dtos/create-visit.dto';
 
 class ReceiveVisitService {
-  private broker: BrokerIntegration;
+  private visitRepository: IVisitRepository;
 
   constructor() {
-    this.broker = Container.get(BrokerIntegration);
+    this.visitRepository = Container.get(VisitRepository);
   }
 
-  async execute(): Promise<void> {
-    await this.broker.receiveMessage(
-      { groupId: 'tyto', topic: 'visit_received' },
-      ({ message, topic }) => {
-        console.log(`${topic} + ${message}`);
-      },
-    );
+  async execute(data: ICreateVisitDTO): Promise<void> {
+    await this.visitRepository.create(Object.assign(new Visit(), data));
   }
 }
 

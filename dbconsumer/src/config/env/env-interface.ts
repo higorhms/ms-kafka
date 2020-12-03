@@ -6,14 +6,11 @@ export interface IEnv {
     config: IKafkaConfig;
     consumer: {
       group: {
-        storeGroupId: string;
+        storeTytoVisitsGroupId: string;
       };
       topic: {
-        storeTopic: string;
+        storeTytoVisitsTopic: string;
       };
-    };
-    producer: {
-      subscriptionsTopic: string;
     };
   };
   mongodb: {

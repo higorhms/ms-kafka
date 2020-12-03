@@ -21,19 +21,19 @@ const envs: IEnv = {
     },
     consumer: {
       group: {
-        storeGroupId: process.env.KAFKA_CONSUMER_STORE_GROUP_ID as string,
+        storeTytoVisitsGroupId:
+          (process.env.KAFKA_CONSUMER_STORE_TYTO_VISITS_GROUP_ID as string) ||
+          'any_group',
       },
       topic: {
-        storeTopic: process.env.KAFKA_CONSUMER_STORE_TOPIC as string,
+        storeTytoVisitsTopic:
+          (process.env.KAFKA_CONSUMER_STORE_TYTO_VISITS_TOPIC as string) ||
+          'any_topic',
       },
-    },
-    producer: {
-      subscriptionsTopic: process.env
-        .KAFKA_PRODUCER_SUBSCRIPTIONS_TOPIC as string,
     },
   },
   mongodb: {
-    database: process.env.MONGODB_DB as string,
+    database: process.env.MONGODB_DB_DATABASE as string,
     host: process.env.MONGODB_DB_HOST as string,
     port: parseInt(process.env.MONGODB_DB_PORT as string, 10) || 27017,
     username: process.env.MONGODB_DB_USER as string,

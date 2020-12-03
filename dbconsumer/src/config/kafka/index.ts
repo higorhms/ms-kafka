@@ -26,8 +26,9 @@ class KafkaConfig {
     await consumer.subscribe({ topic: params.topic });
 
     await consumer.run({
-      eachMessage: async (message: EachMessagePayload): Promise<void> =>
-        callback && callback(message),
+      eachMessage: async (message: EachMessagePayload): Promise<void> => {
+        return callback && callback(message);
+      },
     });
   }
 }
