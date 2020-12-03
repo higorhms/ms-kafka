@@ -4,9 +4,9 @@ RUN mkdir /usr/local/datalake-consumer
 WORKDIR /usr/local/datalake-consumer
 
 ADD package.json package.json
-ADD package-lock.json package-lock.json
+ADD yarn.lock yarn.lock
 
-RUN npm install --production
+RUN yarn install --production
 ADD dist/ .
 
 ADD .env .env
