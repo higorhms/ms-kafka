@@ -19,17 +19,10 @@ const envs: IEnv = {
       },
       log: process.env.KAFKA_LOGLEVEL === 'true',
     },
-    consumer: {
-      group: {
-        storeGroupId: process.env.KAFKA_CONSUMER_STORE_GROUP_ID as string,
-      },
-      topic: {
-        storeTopic: process.env.KAFKA_CONSUMER_STORE_TOPIC as string,
-      },
-    },
+
     producer: {
-      subscriptionsTopic: process.env
-        .KAFKA_PRODUCER_SUBSCRIPTIONS_TOPIC as string,
+      subscriptionsTytoVisitsTopic:
+        (process.env.KAFKA_PRODUCER_TYTO_VISITS_TOPIC as string) || 'any_topic',
     },
   },
 };

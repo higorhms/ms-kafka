@@ -21,7 +21,7 @@ export class KafkaConfig {
 
   async producer(message: any): Promise<void> {
     const producerConfig = {
-      topic: 'visit_received',
+      topic: ENV.kafka.producer.subscriptionsTytoVisitsTopic,
       compression: CompressionTypes.GZIP,
       messages: [
         {
