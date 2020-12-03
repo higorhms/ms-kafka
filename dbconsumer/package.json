@@ -13,6 +13,7 @@
     "dependencies": {
         "dotenv": "^8.2.0",
         "kafkajs": "^1.14.0",
+        "mongodb": "^3.6.3",
         "typedi": "^0.8.0",
         "typeorm": "^0.2.29"
     },
