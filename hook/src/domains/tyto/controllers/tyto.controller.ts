@@ -1,17 +1,18 @@
 import { Request, Response } from 'express';
+import Container from 'typedi';
 
 import TytoService from '../services/tyto.service';
 
 class TytoController {
-  async saveData(request: Request, response: Response) {
+  async saveData(request: Request, response: Response): Promise<Response> {
     const data = request.body;
 
-    const service = new TytoService();
+    const service = Container.get(TytoService);
 
     const resp = await service.execute(data);
 
-    response.json(resp);
+    return response.json(resp);
   }
 }
 
-export default new TytoController();
+export default TytoController;
