@@ -10,7 +10,7 @@ export class GooglePubsubIntegration {
     this.topicName = topicName;
   }
 
-  async publishMessage(data: string) {
+  async publishMessage(data: string): Promise<string> {
     const dataBuffer = Buffer.from(data);
     const messageId = await this.client
       .topic(this.topicName)

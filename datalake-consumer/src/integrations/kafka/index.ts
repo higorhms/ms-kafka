@@ -1,4 +1,5 @@
 import { Kafka, Consumer, ConsumerRunConfig } from 'kafkajs';
+
 import { IKafkaConfig, IKafkaConsumer } from './types';
 
 export class KafkaIntegration {
@@ -13,15 +14,14 @@ export class KafkaIntegration {
     this.client = new Kafka(this.config);
   }
 
-  async createConsumer(params: IKafkaConsumer) {
-    const { groupId, topic } = params;
+  async createConsumer({ groupId, topic }: IKafkaConsumer): Promise<void> {
     this.consumer = this.client.consumer({ groupId });
 
     await this.consumer.connect();
     await this.consumer.subscribe({ topic });
   }
 
-  async run(params: ConsumerRunConfig) {
+  async run(params: ConsumerRunConfig): Promise<void> {
     await this.consumer.run(params);
   }
 }

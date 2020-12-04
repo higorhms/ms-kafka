@@ -21,6 +21,9 @@ class ReceiveVisitsController {
       },
       ({ message, topic }) => {
         if (topic === ENV.kafka.consumer.topic.storeTytoVisitsTopic) {
+          console.log(
+            `dbconsumer received message on ${ENV.kafka.consumer.topic.storeTytoVisitsTopic}`,
+          );
           const service = Container.get(ReceiveVisitService);
 
           service.execute(JSON.parse(String(message.value)));
